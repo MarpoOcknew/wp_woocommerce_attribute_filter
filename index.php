@@ -13,12 +13,11 @@ Domain Path: /languages
 //main plugin class
 class mp_wc_filter_menu{
 
-    public function __construct(){
+    public function __construct() {
         add_action('admin_init', array($this, 'add_meta_box'));
     }
 
-    //register our meta box for our links
-    public function add_meta_box(){
+    public function add_meta_box() {
         add_meta_box(
             'mp_wc_filter_menu_metabox',
             __('WooCommerce Filters', 'wc-filters-to-menu'),
@@ -29,12 +28,16 @@ class mp_wc_filter_menu{
         );
     }
 
-    //displays a metabox that will let users link directly to post type archives
-    public function display_meta_box(){
+    public function display_meta_box() {
 
         ?>
-        <div id="posttype-archive-pages" class="posttypediv">
-            <div id="tabs-panel-archive-pages" class="tabs-panel tabs-panel-active form-no-clear">
+        <style>
+        #woocommerce-attribute-filters select {
+            width: 100%;
+        }
+        </style>
+        <div id="woocommerce-attribute-filters" class="">
+            <div id="tabs-panel-woocommerce-attribute-filters" class="tabs-panel tabs-panel-active form-no-clear">
 
                 <div id="mp_category">
                     <label for="mp_wc_filter_menu_category">Category: </label>
@@ -74,7 +77,7 @@ class mp_wc_filter_menu{
                     </select>
                 </div>
 
-                <ul id="archive-pages" class="categorychecklist form-no-clear">
+                <ul id="woocommerce-attribute-filter-input" class="categorychecklist form-no-clear">
                     <li>
                         <label class="menu-item-title">
                             <input type="checkbox" class="menu-item-checkbox" name="menu-item[-1][menu-item-object-id]" value="-1"/> Add to menu?
@@ -89,7 +92,7 @@ class mp_wc_filter_menu{
             </div>
             <p class="button-controls">
                 <span class="add-to-menu">
-                    <input type="submit" class="button-secondary submit-add-to-menu right" value="<?php _e('Add to Menu', 'wc-filters-to-menu') ?>" name="add-post-type-menu-item" id="submit-posttype-archive-pages">
+                    <input type="submit" class="button-secondary submit-add-to-menu right" value="<?php _e('Add to Menu', 'wc-filters-to-menu') ?>" name="add-filter-menu-item" id="submit-woocommerce-attribute-filters">
                     <span class="spinner"></span>
                 </span>
             </p>
